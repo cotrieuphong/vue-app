@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Jogger"
+    },
+    {
+      "id": 2,
+      "name": "Tank top"
+    },
+    {
+      "id": 3,
+      "name": "Jean"
+    },
+    {
+      "id": 4,
+      "name": "Shirt"
+    },
+    {
+      "id": 5,
+      "name": "Hoodie"
+    }
+  ]
+}
