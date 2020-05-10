@@ -7,7 +7,7 @@
 
 <script>
 import Item from "@/components/Item.vue";
-import axios from "axios";
+import NewsServices from "@/services/NewsServices.js";
 
 export default {
   components: {
@@ -21,16 +21,12 @@ export default {
   },
 
   created() {
-    axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?country=us&apiKey=af58dc20bb2f429aa75f0f6799ca69da"
-      )
+    NewsServices.getNewsPaper()
       .then(res => {
         this.news = res.data.articles;
-        console.log(res.data.articles);
       })
-      .catch(res => {
-        console.log(res);
+      .catch(err => {
+        console.log(err);
       });
   }
 };
