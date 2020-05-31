@@ -3,8 +3,8 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import List from "../views/List.vue";
 import Create from "../views/Create.vue";
-// import Item from "../components/Item.vue";
 import ItemDetail from "../components/ItemDetail.vue";
+import Todo from "@/views/Todo.vue";
 
 Vue.use(VueRouter);
 
@@ -29,6 +29,11 @@ const routes = [
     name: "item",
     component: ItemDetail,
     props: true
+  },
+  {
+    path: "/todo",
+    name: "todo",
+    component: Todo
   }
 ];
 

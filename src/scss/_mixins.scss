@@ -1,0 +1,37 @@
+// mixins
+
+@mixin border-radius($tl, $tr, $br, $bl) {
+  border-radius: $tl $tr $br $bl;
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($width) {
+  @include size($width, $width);
+}
+
+@mixin circle($width) {
+  @include square($width);
+}
+
+@mixin pseudo {
+  content: '';
+  display: block;
+}
+
+@mixin position($position, $top, $right, $bottom, $left) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

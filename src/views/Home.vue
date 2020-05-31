@@ -1,3 +1,15 @@
 <template>
-  <h1>Home</h1>
+  <div>
+    <h1>Home</h1>
+  </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    loadingStatus() {
+      return "";
+    }
+  }
+};
+</script>
