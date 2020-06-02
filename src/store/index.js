@@ -27,6 +27,9 @@ export default new Vuex.Store({
   mutations: {
     LOADER_CTRL(state, value) {
       return (state.loader = value);
+    },
+    ADD_TODO(state, value) {
+      return (state.todos = [value, ...state.todos]);
     }
   },
   actions: {
@@ -34,12 +37,18 @@ export default new Vuex.Store({
       if (state.loader) {
         commit("LOADER_CTRL", value);
       }
+    },
+    addTodo({ state, commit }, value) {
+      commit("ADD_TODO", value);
     }
   },
   modules: {},
   getters: {
     loaderStatus: state => {
       return state.loader;
+    },
+    todosLenght: state => {
+      return state.todos.length;
     }
   }
 });
