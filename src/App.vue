@@ -19,8 +19,8 @@
     <v-content>
       <v-container fluid>
         <Loader v-if="loaderStatus" />
-        <transition name="fade" mode="out-in">
-          <router-view></router-view>
+        <transition name="fade" mode="out-in" appear>
+          <router-view />
         </transition>
       </v-container>
     </v-content>
@@ -63,6 +63,19 @@ html {
   overflow-y: auto !important;
 }
 
+.scale-enter,
+.scale-leave-to {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transform: scale(1);
+  transform-origin: center;
+  transition: all 1s ease;
+}
+
 .fade-enter {
   opacity: 0;
   transform: translateY(10px);
@@ -70,7 +83,7 @@ html {
 
 .fade-enter-active,
 .fade-leave-active {
-  transform: all 1s ease;
+  transition: all 0.3s ease;
 }
 
 .fade-leave-to {

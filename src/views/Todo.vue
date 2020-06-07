@@ -29,14 +29,7 @@ export default {
   },
   methods: {
     addTodo() {
-      return (
-        this.$store.dispatch("addTodo"),
-        {
-          id: 4,
-          task: "Working ?",
-          completed: false
-        }
-      );
+      return;
     }
   }
 };

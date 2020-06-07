@@ -1,16 +1,51 @@
 <template>
-  <div class="app-loader">
-    <h3 class="app-loader__title headline font-weight-bold mb-5">Vue App</h3>
-    <div class="sk-folding-cube">
-      <div class="sk-cube1 sk-cube"></div>
-      <div class="sk-cube2 sk-cube"></div>
-      <div class="sk-cube4 sk-cube"></div>
-      <div class="sk-cube3 sk-cube"></div>
+  <transition appear @leave="leave" :css="false">
+    <div class="app-loader">
+      <h3 class="app-loader__title headline font-weight-bold mb-5">Vue App</h3>
+      <div class="sk-folding-cube app-loader__cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
-export default {};
+import gsap from "gsap";
+export default {
+  data() {
+    return {
+      title: document.getElementsByClassName("app-loader__title"),
+      cube: document.getElementsByClassName("app-loader__cube")
+    };
+  },
+  methods: {
+    leave(el, done) {
+      gsap.to(el, {
+        duration: 0.4,
+        delay: 0.5,
+        opacity: 0,
+        scale: 0,
+        onComplete: done
+      });
+
+      gsap.to(this.title, {
+        duration: 0.5,
+        opacity: 0,
+        y: -80,
+        ease: "power4.in"
+      });
+
+      gsap.to(this.cube, {
+        duration: 0.5,
+        opacity: 0,
+        y: 80,
+        ease: "power4.in"
+      });
+    }
+  }
+};
 </script>
 <style lang="scss">
 .app-loader {
@@ -18,11 +53,11 @@ export default {};
   @include position(fixed, 0, 0, 0, 0);
   @include flex-center;
   flex-direction: column;
-  background-color: $white;
+  background: linear-gradient(to right, #c94b4b, #4b134f);
   z-index: 1010;
 
   &__title {
-    color: $blue;
+    color: $white;
   }
 }
 
@@ -51,7 +86,7 @@ export default {};
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $blue;
+  background-color: $white;
   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
   animation: sk-foldCubeAngle 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
