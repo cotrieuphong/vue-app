@@ -1,18 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark elevate-on-scroll>
+      <v-toolbar-title>Vue App</v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-btn text :to="{ name: 'home' }">
         Home
-      </v-btn>
-      <v-spacer></v-spacer>
-      <v-btn text :to="{ name: 'todo' }">
-        Todo
-      </v-btn>
-      <v-btn text :to="{ name: 'list' }">
-        List
-      </v-btn>
-      <v-btn text :to="{ name: 'create' }">
-        Create
       </v-btn>
     </v-app-bar>
 
@@ -39,14 +31,12 @@ export default {
 
   methods: {
     loaderControl() {
-      this.$store.commit("LOADER_CTRL", false);
+      this.$store.dispatch("loaderControl", false);
     }
   },
 
   computed: {
-    loaderStatus() {
-      return this.$store.getters.loaderStatus;
-    }
+    ...mapGetters(["loaderStatus"])
   },
 
   created() {

@@ -3,19 +3,35 @@
     <v-form>
       <v-container>
         <v-row>
-          <v-col cols="n in 2">
-            <v-text-field label="What do you have in mind ?"></v-text-field>
+          <v-col cols="10">
+            <v-text-field
+              v-model="newTodo"
+              @change="getTodo"
+              @keypress.enter="addTodo(newTodo)"
+              label="What do you have in mind ?"
+            ></v-text-field>
           </v-col>
-          <v-btn color="primary" @click="addTodo">Primary</v-btn>
+          <v-col cols="2">
+            <v-btn color="primary" @click="addTodo(newTodo)">Primary</v-btn>
+          </v-col>
+          <v-col cols="12"> </v-col>
+          <v-col cols="12">
+            <v-card class="mx-auto" tile>
+              <v-list dense>
+                <v-subheader>You have {{ todosLenght }} todo</v-subheader>
+                <v-list-item-group color="primary">
+                  <v-list-item v-for="todo in todos" :key="todo.id">
+                    <v-list-item-content>
+                      <v-list-item-title v-text="todo.task"></v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list-item-group>
+              </v-list>
+            </v-card>
+          </v-col>
         </v-row>
       </v-container>
     </v-form>
-    <h1>You have {{ todosLenght }} todo</h1>
-    <ul class="app-todo__list">
-      <li class="app-todo__item" v-for="todo in todos" :key="todo.id">
-        {{ todo.task }}
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -23,13 +39,24 @@
 import { mapState, mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      newTodo: ""
+    };
+  },
+
   computed: {
     ...mapState(["todos"]),
     ...mapGetters(["todosLenght"])
   },
+
   methods: {
-    addTodo() {
+    getTodo(value) {
+      console.log(value);
       return;
+    },
+    addTodo(value) {
+      this.$store.dispatch("addTodo", value);
     }
   }
 };
